@@ -3,18 +3,24 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2015 at 05:57 AM
+-- Generation Time: Feb 12, 2015 at 12:25 PM
 -- Server version: 5.5.40
 -- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
 --
--- Database: `sistem-taman`
+-- Database: `sistem-pengaduan`
 --
-CREATE DATABASE IF NOT EXISTS `sistem-taman` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `sistem-taman`;
+CREATE DATABASE IF NOT EXISTS `sistem-pengaduan` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `sistem-pengaduan`;
 
 -- --------------------------------------------------------
 
@@ -25,7 +31,7 @@ USE `sistem-taman`;
 DROP TABLE IF EXISTS `pengaduan`;
 CREATE TABLE IF NOT EXISTS `pengaduan` (
 `id` int(11) NOT NULL,
-  `id_taman` int(11) NOT NULL,
+  `tid` int(11) DEFAULT NULL,
   `nama_pelapor` varchar(255) NOT NULL,
   `telepon_pelapor` varchar(15) NOT NULL,
   `judul` varchar(255) NOT NULL,
@@ -55,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `taman` (
 -- Indexes for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
- ADD PRIMARY KEY (`id`), ADD KEY `id_taman` (`id_taman`);
+ ADD PRIMARY KEY (`id`), ADD KEY `id_taman` (`tid`);
 
 --
 -- Indexes for table `taman`
@@ -85,4 +91,8 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- Constraints for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
-ADD CONSTRAINT `pengaduan_ibfk_1` FOREIGN KEY (`id_taman`) REFERENCES `taman` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `pengaduan_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `taman` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
