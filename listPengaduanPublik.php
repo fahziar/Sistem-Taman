@@ -1,3 +1,10 @@
+<?php
+	require_once("config.php");
+	$connection = new mysqli($db_host, $db_username, $db_password, $db_name);
+
+	$result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,30 +49,19 @@
        <div class="container" style="padding: 20px 10px">	
 	  <div class="row">
 		<div class="panel-content fg-dark nlp nrp">
+			<?php
+				while ($row = $result->fetch_array())
+				{
+			?>
 			<div class="bg-darkBlue" style="height: 200px">
 				<img src="images/lansia1.jpg" class="place-left margin20 nlm ntm size4" style="height: 200px">
-				<h2 class="fg-white" style="padding: 10px 10px">Judul Pengaduan</h2>
-				<p class="fg-yellow" style="font-size: 20px">Taman Lansia | 2/2/2015 | Sedang diproses</p>
-				<p class="fg-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,.anjdkk ndskj skjfkd kfjkk kfjdk ajsiosj
-				ahjA SJD JAKjskjkd Lorem Ipsum has been the industry's standard dummy text.</p>
+				<h2 class="fg-white" style="padding: 10px 10px"><?php echo $row['judul'];?></h2>
+				<p class="fg-yellow" style="font-size: 20px"><?php echo $row['nama'];?> | <?php echo $row['tanggal'];?> | <?php echo $row['status'];?></p>
+				<p class="fg-white"><?php echo $row['isi'];?></p>
 			</div><br>
-			<div class="bg-darkBlue" style="height: 200px">
-				<img src="images/pb.jpg" class="place-left margin20 nlm ntm size4" style="height: 200px">
-				<h2 class="fg-white" style="padding: 10px 10px">Judul Pengaduan</h2>
-				<p class="fg-yellow" style="font-size: 20px">Taman Pustaka Bunga | 2/2/2015 | Sedang diproses</p>
-				<p class="fg-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,.anjdkk ndskj skjfkd kfjkk kfjdk ajsiosj
-				ahjA SJD JAKjskjkd Lorem Ipsum has been the industry's standard dummy text.</p>
-			</div><br>
-			<div class="bg-darkBlue" style="height: 200px">
-				<img src="images/jomblo4.jpg" class="place-left margin20 nlm ntm size4" style="height: 200px">
-				<h2 class="fg-white" style="padding: 10px 10px">Judul Pengaduan</h2>
-				<p class="fg-yellow" style="font-size: 20px">Taman Pustaka Bunga | 2/2/2015 | Sedang diproses</p>
-				<p class="fg-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,.anjdkk ndskj skjfkd kfjkk kfjdk ajsiosj
-				ahjA SJD JAKjskjkd Lorem Ipsum has been the industry's standard dummy text.</p>
-			</div>
+			<?php
+				}
+			?>
 	    </div>
         </div>
 	  </div>
