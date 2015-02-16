@@ -27,11 +27,11 @@
 	} 
 	if ($showPage) {
 	    if(!isset($_GET['search'])){
-		   $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
+		   $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.telepon_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
 	    }
 	    else{
 	        $search = $_GET['search'];
-	        $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )"); 
+	        $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.telepon_pelapor, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )"); 
 	    }
 
 ?>
@@ -116,15 +116,20 @@
         <a href="homeAdmin.php" class="element"><span class="icon-home"></span><b> Home</b></a>
 		<a href="listPengaduanAdmin.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
 		<a href="#" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
+
+
 		<div class="element" style="padding:15px 10px">
 					<form action='listPengaduanAdmin.php' method='get'>
 						<div class="input-control text size4">
 							<input type="text" name="search" placeholder="Search">
+
+
 							<button class="btn-search"></button>
 						</div>
 					</form>
 		</div>
 		<a href="logout.php" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
+
     </div>
 	</div>
 	
@@ -136,25 +141,28 @@
 			while ($row = $result->fetch_array())
 			{
 			?>
-			<div class="bg-darkBlue" style="height: 200px">
+			<div class="bg-darkBlue">
 				<img src="<?php echo $row['link_foto'];?>" class="place-left margin20 nlm ntm size4" style="height: 200px">
 				<h2 class="fg-white" style="padding: 10px 10px"><?php echo $row["judul"];?></h2>
-				<p class="fg-yellow" style="font-size: 20px"><?php echo $row["nama"];?> | <?php echo $row["tanggal"];?> | <?php echo $row["status"];?></p>
+				<p class="fg-yellow" style="font-size: 16px"><?php echo $row["nama"];?> | <?php echo $row["tanggal"];?> | <?php echo $row["status"];?></p>
 				<p class="fg-yellow" style="font-size: 14px">Pelapor : <?php echo $row["nama_pelapor"];?> | Kontak : <?php echo $row["telepon_pelapor"];?></p>
 				<p class="fg-white"><?php echo $row["isi"];?></p>
-				<a href="javascript:hapusPengaduan(<?php echo $row['id'];?>);" class="fg-blue"><span class="icon-remove fg-white"></span> Hapus Pengaduan </a> | Ubah Status Pengaduan
-				<form action='listPengaduanAdmin.php' method="post">
-				<p class="input-control select info-state">
-					<select name="status">
-						<option value="Belum ditangani">Belum ditangani</option>
-						<option value="Sedang diproses">Sedang diproses</option>
-						<option value="Sudah ditangani">Sudah ditangani</option>
-					</select>
-				</p>
-				<input type="hidden" name="id" value="<?php echo $row['id'];?>"/>
-				<input type="hidden" name="cmd" value="2"/>
-				<button type="submit" class="bg-darkBlue fg-white large" id="kirimButton">OK</button>
-			</form>
+				
+				<form action='listPengaduanAdmin.php' method="post" style="padding:10px 10px">
+					<div class="span3 input-control select info-state" style="fg-blue">
+						<select name="status">
+							<option selected>Ubah Status Pengaduan</option>
+							<option value="Belum ditangani">Belum ditangani</option>
+							<option value="Sedang diproses">Sedang diproses</option>
+							<option value="Sudah ditangani">Sudah ditangani</option>
+						</select>
+					</div>
+					<input type="hidden" name="id" value="<?php echo $row['id'];?>"/>
+					<input type="hidden" name="cmd" value="2"/>
+					<button type="submit" class="bg-black fg-white" id="kirimButton">OK</button>
+					<span class="fg-white" style="padding-left: 30px">||</span>
+					<a href="javascript:hapusPengaduan(<?php echo $row['id'];?>);" class="fg-white place-right" style="padding-right:300px"> <span class="icon-remove fg-white"></span>  Hapus Pengaduan</a>
+				</form>
 
 			</div><br>
 			<?php
