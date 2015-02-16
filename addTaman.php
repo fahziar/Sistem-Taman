@@ -59,10 +59,10 @@
   <div class="container" style="padding: 30px 10px">	
 	  <div class="row">
 		  <div class="offset5">
-			<form method="#" action="#">
+			<form method="post" action="tambahTaman.php">
 				<label><b>Nama Taman</b></label>
 				<div class="span6 input-control text info-state">
-					<input type="text" placeholder="nama taman"/>
+					<input type="text" placeholder="nama taman" name="nama"/>
 				</div>
 				<br>
 				<br>

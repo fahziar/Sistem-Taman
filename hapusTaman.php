@@ -1,7 +1,7 @@
 <?php
 	require_once("util.php");
-	if(isset($_GET['id'])){
-		$id = $_GET['id'];
-		hapusDatabaseTaman();
+	if(isset($_POST['id'])){
+
+		hapusDatabaseTaman($_POST['id']);
 	}
 ?>

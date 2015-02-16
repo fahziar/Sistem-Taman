@@ -44,7 +44,7 @@
 	function kirimEmail( $nama_pelapor, $msg){
 		$subject="[PREMAN] Aduan dari ".$nama_pelapor;
 		$to = "muzavan@gmail.com";
-		$headers = "From: pengunjung@preman.com\r\n";
+		$headers = "From: fahziar@gmail.com\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 		$msg = $isi;
 		
@@ -69,30 +69,22 @@
 
 	function tambahDatabaseTaman( $nama_taman){
 		connectDatabase();
-		$query = "INSERT INTO `taman`(`nama`) VALUES('$nama_taman');";
-		echo $query;
+		$query = "INSERT INTO `taman`(`nama`) VALUES('".$nama_taman."');";
 		$result = mysql_query($query);		
 		return $result;
 	}
 
 	function hapusDatabaseTaman( $id){
 		connectDatabase();
-		$query = "DELETE FROM `taman` WHERE `taman`(`id`)=$id;";
+		$query = "DELETE FROM `taman` WHERE `taman`.`id`=".$id.";";
 		$result = mysql_query($query);		
+		echo $result;
 		return $result;
 	}
 
 	function bacaDatabaseTaman(){
 		connectDatabase();
 		$query = "SELECT * FROM `taman`";
-		$result = mysql_query($query);		
-		return $result;
-	}
-
-	function updateDatabaseTaman($id,$nama_baru){
-		connectDatabase();
-		$query = "UPDATE `taman` SET `nama` = '$nama_baru' WHERE `id`=$id";
-		echo $query;
 		$result = mysql_query($query);		
 		return $result;
 	}
