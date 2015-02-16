@@ -1,20 +1,5 @@
 <?php
-	//TODO
-	function CekIsLogin()
-	{
-		//Masih STUB
-		return true;
-	}
-
-	function UbahStatus($id, $statusBaru)
-	{
-		//TODO
-	}
-
-	function BuatLaporan($laporan)
-	{
-		//Todo
-	}
+	require_once("util.php");
 
 	if (!CekIsLogin())
 	{
@@ -44,9 +29,6 @@
 	
 
 	$result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.telepon_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -127,7 +109,7 @@
         <a href="homeAdmin.php" class="element"><span class="icon-home"></span><b> Home</b></a>
 		<a href="listPengaduanAdmin.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
 		<a href="#" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
-		<a href="#" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
+		<a href="homeAdmin.php?logout=1" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
     </div>
 	</div>
 	

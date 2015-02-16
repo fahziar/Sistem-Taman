@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 	function verifikasiPassword( $real){
+=======
+	function verifikasiPassword($real){
+>>>>>>> e21d982458f198cc9097af4324d92766b7fd1fde
 		$password = "kamilRidwanWalkot";
 		if($password===$real){
 			setcookie("preman-login",1);
@@ -43,7 +47,13 @@
 	}
 	
 	function cekIsLogin(){
-		return isset($_COOKIES['preman-login']);
+
+		if (isset($_COOKIE["preman-login"]))
+		{
+			return $_COOKIE['preman-login'] == 1;	
+		}
+
+		return false;
 	}
 
 	function connectDatabase(){

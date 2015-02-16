@@ -1,3 +1,15 @@
+<?php
+	require_once('util.php');
+	if (isset($_POST['submit']) && isset($_POST['password']))
+	{
+		verifikasiPassword($_POST['password']);
+	}
+
+	if (isset($_GET['logout']))
+	{
+		logout();
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,12 +113,12 @@
 					</script>
             </div>
 			<div class="offset10">
-			  <form method="#" action="#">
+			  <form method="post" action="homeAdmin.php">
 				<div class="span4 input-control text info-state">
-					<input type="password" placeholder="Password"/>
+					<input name="password" type="password" placeholder="Password"/>
 				</div>
 				<br><br><br>
-				<button type="submit" class="bg-darkBlue fg-white large" id="loginButton">Login</button>
+				<button name="submit" type="submit" class="bg-darkBlue fg-white large" id="loginButton">Login</button>
 			  </form>
 				<br><br>
 				<div class="offset0">
