@@ -4,7 +4,7 @@ function Validation() {
 	var Telepon = document.getElementById("Telepon");
 	var Taman = document.getElementById("Taman");
 	var Foto = document.getElementById("Foto");
-	var Pengaduan = document.getElementByIs("Pengaduan");
+	var Pengaduan = document.getElementById("Pengaduan");
 	
 	if (Judul.value=="")
 	{
