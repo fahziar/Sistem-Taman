@@ -4,6 +4,11 @@
 	{
 		verifikasiPassword($_POST['password']);
 	}
+
+	if (isset($_GET['logout']))
+	{
+		logout();
+	}
 ?>
 <!DOCTYPE html>
 <html>
