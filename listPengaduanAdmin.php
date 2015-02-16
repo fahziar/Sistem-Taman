@@ -26,9 +26,13 @@
 		}
 	} 
 	if ($showPage) {
-	
-
-	$result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.telepon_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
+	    if(!isset($_GET['search'])){
+		   $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
+	    }
+	    else{
+	        $search = $_GET['search'];
+	        $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )");
+	     }
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,19 +71,21 @@
 
     	function hapusPengaduan(id)
     	{
-    		var xmlHtppObj = new XMLHttpRequest();
-    		xmlHtppObj.open("POST", "listPengaduanAdmin.php", true);
-    		xmlHtppObj.onreadystatechange = function()
-			{
-				if ((xmlHtppObj.status == 200) && (xmlHtppObj.readyState == 4))
+    		if(confirm("Anda yakin akan menghapus pengaduan ini?")){
+	    		var xmlHtppObj = new XMLHttpRequest();
+	    		xmlHtppObj.open("POST", "listPengaduanAdmin.php", true);
+	    		xmlHtppObj.onreadystatechange = function()
 				{
-					location.reload();
+					if ((xmlHtppObj.status == 200) && (xmlHtppObj.readyState == 4))
+					{
+						location.reload();
+					}
+				
 				}
-			
-			}
 
-			xmlHtppObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xmlHtppObj.send("id=" + id + "&cmd=1");
+				xmlHtppObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				xmlHtppObj.send("id=" + id + "&cmd=1");
+			}
     	}
 
     	function ubahStatus(id, status)
@@ -109,7 +115,7 @@
         <a href="homeAdmin.php" class="element"><span class="icon-home"></span><b> Home</b></a>
 		<a href="listPengaduanAdmin.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
 		<a href="#" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
-		<a href="homeAdmin.php?logout=1" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
+		<a href="logout.php" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
     </div>
 	</div>
 	
