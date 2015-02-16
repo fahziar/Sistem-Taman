@@ -116,6 +116,7 @@
         <a href="homeAdmin.php" class="element"><span class="icon-home"></span><b> Home</b></a>
 		<a href="listPengaduanAdmin.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
 		<a href="buatLaporan.php" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
+		<a href="daftarTaman.php" class="element"><span class="icon-list"></span><b> Daftar Taman</b></a>
 
 
 		<div class="element" style="padding:15px 10px">

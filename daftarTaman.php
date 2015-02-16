@@ -35,7 +35,7 @@
         <a href="homeUser.html" class="element"><span class="icon-home"></span><b> Home</b></a>
 		<a href="listPengaduanPublik.html" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
 		<a href="#" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
-		<a href="daftarTaman.html" class="element"><span class="icon-list"></span><b> Daftar Taman</b></a>
+		<a href="daftarTaman.php" class="element"><span class="icon-list"></span><b> Daftar Taman</b></a>
 		<a href="#" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
     </div>
 	</div>
