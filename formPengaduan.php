@@ -33,7 +33,7 @@
     <div class="navigation-bar dark">
     <div class="navigation-bar-content container">
         <a href="homeUser.html" class="element"><span class="icon-home"></span><b> Home</b></a>
-		<a href="listPengaduanPublik.html" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
+		<a href="listPengaduanPublik.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
     </div>
 	</div>
 <div class="">
