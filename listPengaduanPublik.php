@@ -2,11 +2,11 @@
 	require_once("config.php");
 	$connection = new mysqli($db_host, $db_username, $db_password, $db_name);
     if(!isset($_GET['search'])){
-           $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
+           $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id ORDER BY pengaduan.id DESC");
         }
         else{
             $search = $_GET['search'];
-            $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )"); 
+            $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%') ORDER BY pengaduan.id DESC"); 
         }
 ?>
 
@@ -46,6 +46,16 @@
     <div class="navigation-bar-content container">
         <a href="homeUser.html" class="element"><span class="icon-home"></span><b> Home</b></a>
 		<a href="listPengaduanPublik.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
+        <div class="element" style="padding:15px 10px">
+                    <form action='listPengaduanPublik.php' method='get'>
+                        <div class="input-control text size4">
+                            <input type="text" name="search" placeholder="Search">
+
+
+                            <button class="btn-search"></button>
+                        </div>
+                    </form>
+        </div>
     </div>
 	</div>
 	

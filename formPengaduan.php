@@ -46,6 +46,12 @@
   <div class="container" style="padding: 25px 10px">	
 	  <div class="row">
 		  <div class="offset5">
+		  		<?php 
+					if(isset($_GET['upload'])){?>
+						<p style='color:#ee0000;margin-top:0px;font-size:14pt;'>File yang diunggah bukan gambar</p>
+				<?php
+					}
+				?>
 			<form method="post" action="terimaPengaduan.php" onSubmit="return Validation()" enctype="multipart/form-data">
 				<label><b>Judul</b></label>
 				<div class="span6 input-control text info-state">

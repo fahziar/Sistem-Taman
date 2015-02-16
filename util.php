@@ -1,5 +1,6 @@
 <?php
 	require_once("config.php");
+	//require_once 'swiftmailer-master/lib/swift_required.php';
 
 	function verifikasiPassword( $real){
 		$password = "kamilRidwanWalkot";
@@ -25,6 +26,12 @@
 	
 	function uploadPengaduan(){
 		$i=0;
+		$allowed =  array('gif','png' ,'jpg');
+		$filename = $_FILES['imgSrc']['name'];
+		$ext = pathinfo($filename, PATHINFO_EXTENSION);
+		if(!in_array($ext,$allowed) ) {
+		    return in_array($ext,$allowed);
+		}
 		while(file_exists("images/$i-{$_FILES['imgSrc']["name"]}")){
 			$i++;
 		}
@@ -93,4 +100,6 @@
 	function logout(){
 		setcookie('preman-login', null, -1);
 	}
+
+
 ?>
