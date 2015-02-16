@@ -27,11 +27,11 @@
 	} 
 	if ($showPage) {
 	    if(!isset($_GET['search'])){
-		   $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.telepon_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id ORDER BY pengaduan.id DESC");
+		   $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.telepon_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
 	    }
 	    else{
 	        $search = $_GET['search'];
-	        $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.telepon_pelapor, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%') ORDER BY pengaduan.id DESC"); 
+	        $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.telepon_pelapor, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )"); 
 	    }
 
 ?>
@@ -135,6 +135,7 @@
 	</div>
 	
 <div class="">
+     <div style="background: #b8b9ba; background-size: cover;">
        <div class="container" style="padding: 20px 10px">	
 	  <div class="row">
 		<div class="panel-content fg-dark nlp nrp">
@@ -181,13 +182,20 @@
 			<?php
 				}
                 if($result->num_rows == 0){
-                	$key = $_GET['search'];
-                    echo "<p> Pencarian untuk '$key' tidak ditemukan</p>";
+                	if ( isset($_GET['search']) ){
+						$key = $_GET['search'];
+						echo "<p> Pencarian untuk '$key' tidak ditemukan</p>";
+					}
+					else{
+						echo "<h3>Tidak ada yang dapat ditampilkan</h3>";
+					}
                 }
+				
 			?>
 	    </div>
         </div>
 	  </div>
+	</div>
 	</div>
 </div>	
     
