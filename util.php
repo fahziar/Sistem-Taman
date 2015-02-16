@@ -1,5 +1,5 @@
 <?php
-	function verifikasiPassword(string $real){
+	function verifikasiPassword( $real){
 		$password = "kamilRidwanWalkot";
 		if($password===$real){
 			setcookie("preman-login",1);
@@ -14,9 +14,9 @@
 		return;
 	}
 	
-	function terimaPengaduan(int $id, string $nama_pelapor, string $telepon_pelapor,int $tid, string $isi, string $link_foto){
+	function terimaPengaduan($judul,  $nama_pelapor,  $telepon_pelapor,$tid, $isi, $link_foto){
 		connectDatabase();
-		$query = "INSERT INTO `pengaduan` (`id`,`nama_pelapor`,`telepon_pelapor`,`tid`,`isi`,`link_foto`) VALUES($id,'$nama_pelapor',$telepon_pelapor,$tid,'$isi','$link_foto');";
+		$query = "INSERT INTO `pengaduan` (`judul`,`nama_pelapor`,`telepon_pelapor`,`tanggal`,`tid`,`isi`,`link_foto`) VALUES('$judul','$nama_pelapor','$telepon_pelapor',CURDATE(),$tid,'$isi','$link_foto');";
 		$result = mysql_query($query);
 		return $result;
 	}
@@ -32,7 +32,7 @@
 		return $imgSrc;
 	}
 	
-	function kirimEmail(string $nama_pelapor,string $msg){
+	function kirimEmail( $nama_pelapor, $msg){
 		$subject="[PREMAN] Aduan dari ".$nama_pelapor;
 		$to = "muzavan@gmail.com";
 		$headers = "From: pengunjung@preman.com\r\n";
@@ -51,14 +51,14 @@
 		mysql_select_db('Sistem-Pengaduan');
 	}
 
-	function tambahDatabaseTaman(string $nama_taman){
+	function tambahDatabaseTaman( $nama_taman){
 		connectDatabase();
 		$query = "INSERT INTO `taman`(`nama`) VALUES('$nama_taman');";
 		$result = mysql_query($query);		
 		return $result;
 	}
 
-	function hapusDatabaseTaman(int $id){
+	function hapusDatabaseTaman( $id){
 		connectDatabase();
 		$query = "DELETE FROM `taman` WHERE `taman`(`id`)=$id;";
 		$result = mysql_query($query);		
