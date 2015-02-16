@@ -1,12 +1,13 @@
 <?php
-	function verifikasiPassword(string $password, string $real){
+	function verifikasiPassword(string $real){
+		$password = "kamilRidwanWalkot";
 		if($password===$real){
 			setcookie("preman-login",1);
-			header('Location:lihatpengaduan.php');
+			header('Location:listPengaduanAdmin.php');
 			die();
 		}
 		else{
-			header('Location:loginadmin.php?error=1');
+			header('Location:homeAdmin.php?error=1');
 			die();
 		}
 		
@@ -32,7 +33,7 @@
 	}
 	
 	function kirimEmail(string $nama_pelapor,string $msg){
-		$subject="[PREMAN] Laporan dari ".$nama_pelapor;
+		$subject="[PREMAN] Aduan dari ".$nama_pelapor;
 		$to = "muzavan@gmail.com";
 		$headers = "From: pengunjung@preman.com\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
@@ -47,7 +48,7 @@
 
 	function connectDatabase(){
 		mysql_connect('localhost','root','');
-		mysql_select_db('sistem-preman');
+		mysql_select_db('Sistem-Pengaduan');
 	}
 
 	function tambahDatabaseTaman(string $nama_taman){
@@ -57,4 +58,21 @@
 		return $result;
 	}
 
+	function hapusDatabaseTaman(int $id){
+		connectDatabase();
+		$query = "DELETE FROM `taman` WHERE `taman`(`id`)=$id;";
+		$result = mysql_query($query);		
+		return $result;
+	}
+
+	function bacaDatabaseTaman(){
+		connectDatabase();
+		$query = "SELECT * FROM `taman`";
+		$result = mysql_query($query);		
+		return $result;
+	}
+
+	function logout(){
+		setcookie('preman-login', null, -1);
+	}
 ?>
