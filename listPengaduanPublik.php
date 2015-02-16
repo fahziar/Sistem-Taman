@@ -1,15 +1,13 @@
 <?php
 	require_once("config.php");
 	$connection = new mysqli($db_host, $db_username, $db_password, $db_name);
-
     if(!isset($_GET['search'])){
-	   $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
-    }
-    else{
-        $search = $_GET['search'];
-        $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )");
-        echo "SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )";
-    }
+           $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id");
+        }
+        else{
+            $search = $_GET['search'];
+            $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )"); 
+        }
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +65,12 @@
 				<p class="fg-white"><?php echo $row['isi'];?></p>
 			</div><br>
 			<?php
-				}
-			?>
+                }
+                if($result->num_rows == 0){
+                    $key = $_GET['search'];
+                    echo "<p> Pencarian untuk '$key' tidak ditemukan</p>";
+                }
+            ?>
 	    </div>
         </div>
 	  </div>

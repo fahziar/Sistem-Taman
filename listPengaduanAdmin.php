@@ -31,8 +31,9 @@
 	    }
 	    else{
 	        $search = $_GET['search'];
-	        $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )");
-	     }
+	        $result = $connection->query("SELECT pengaduan.id, pengaduan.nama_pelapor, pengaduan.judul, pengaduan.tanggal, pengaduan.isi,pengaduan.status, pengaduan.link_foto, taman.nama FROM pengaduan,taman where pengaduan.tid = taman.id and (pengaduan.nama_pelapor like '%$search%' or taman.nama like '%$search%' or pengaduan.isi like '%$search%' )"); 
+	    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -115,6 +116,14 @@
         <a href="homeAdmin.php" class="element"><span class="icon-home"></span><b> Home</b></a>
 		<a href="listPengaduanAdmin.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
 		<a href="#" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
+		<div class="element" style="padding:15px 10px">
+					<form action='listPengaduanAdmin.php' method='get'>
+						<div class="input-control text size4">
+							<input type="text" name="search" placeholder="Search">
+							<button class="btn-search"></button>
+						</div>
+					</form>
+		</div>
 		<a href="logout.php" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
     </div>
 	</div>
@@ -148,14 +157,17 @@
 			</form>
 
 			</div><br>
-			<?php 
-			}
+			<?php
+				}
+                if($result->num_rows == 0){
+                	$key = $_GET['search'];
+                    echo "<p> Pencarian untuk '$key' tidak ditemukan</p>";
+                }
 			?>
 	    </div>
         </div>
 	  </div>
 	</div>
-</div>
 </div>	
     
 <script src="js/hitua.js"></script>
