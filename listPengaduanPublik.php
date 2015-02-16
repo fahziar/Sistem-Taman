@@ -59,7 +59,7 @@
 				{
 			?>
 			<div class="bg-darkBlue" style="height: 200px">
-				<img src="images/lansia1.jpg" class="place-left margin20 nlm ntm size4" style="height: 200px">
+				<img src="<?php echo $row['link_foto'];?>" class="place-left margin20 nlm ntm size4" style="height: 200px">
 				<h2 class="fg-white" style="padding: 10px 10px"><?php echo $row['judul'];?></h2>
 				<p class="fg-yellow" style="font-size: 20px"><?php echo $row['nama'];?> | <?php echo $row['tanggal'];?> | <?php echo $row['status'];?></p>
 				<p class="fg-white"><?php echo $row['isi'];?></p>
