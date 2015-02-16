@@ -1,20 +1,5 @@
 <?php
-	//TODO
-	function CekIsLogin()
-	{
-		//Masih STUB
-		return true;
-	}
-
-	function UbahStatus($id, $statusBaru)
-	{
-		//TODO
-	}
-
-	function BuatLaporan($laporan)
-	{
-		//Todo
-	}
+	require_once("util.php");
 
 	if (!CekIsLogin())
 	{
