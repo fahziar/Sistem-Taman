@@ -115,7 +115,7 @@
     <div class="navigation-bar-content container">
         <a href="homeAdmin.php" class="element"><span class="icon-home"></span><b> Home</b></a>
 		<a href="listPengaduanAdmin.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
-		<a href="#" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
+		<a href="buatLaporan.php" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
 
 
 		<div class="element" style="padding:15px 10px">
@@ -148,22 +148,34 @@
 				<p class="fg-yellow" style="font-size: 14px">Pelapor : <?php echo $row["nama_pelapor"];?> | Kontak : <?php echo $row["telepon_pelapor"];?></p>
 				<p class="fg-white"><?php echo $row["isi"];?></p>
 				
-				<form action='listPengaduanAdmin.php' method="post" style="padding:10px 10px">
-					<div class="span3 input-control select info-state" style="fg-blue">
-						<select name="status">
-							<option selected>Ubah Status Pengaduan</option>
-							<option value="Belum ditangani">Belum ditangani</option>
-							<option value="Sedang diproses">Sedang diproses</option>
-							<option value="Sudah ditangani">Sudah ditangani</option>
-						</select>
-					</div>
-					<input type="hidden" name="id" value="<?php echo $row['id'];?>"/>
+				<form method="post" action="listPengaduanAdmin.php" style="padding-bottom:10px">
 					<input type="hidden" name="cmd" value="2"/>
-					<button type="submit" class="bg-black fg-white" id="kirimButton">OK</button>
-					<span class="fg-white" style="padding-left: 30px">||</span>
-					<a href="javascript:hapusPengaduan(<?php echo $row['id'];?>);" class="fg-white place-right" style="padding-right:300px"> <span class="icon-remove fg-white"></span>  Hapus Pengaduan</a>
-				</form>
-
+					<input type="hidden" name="id" value="<?php echo $row['id'];?>"/>
+                     <div class="input-control radio default-style margin10 fg-white" data-role="input-control">
+                         <label>
+                         <input type="radio" name="status" value="Belum ditangani" checked />
+                         <span class="check"></span>
+                                                 Belum ditangani
+                         </label>
+                     </div>
+                     <div class="input-control radio default-style margin10 fg-white" data-role="input-control">
+                         <label>
+                         <input type="radio" name="status" value="Sedang diproses"/>
+                         <span class="check"></span>
+                                                  Sedang diproses
+                         </label>
+                     </div>
+                                         <div class="input-control radio default-style margin10 fg-white" data-role="input-control">
+                         <label>
+                         <input type="radio" name="status" value="Sudah ditangani"/>
+                         <span class="check"></span>
+                                                 Sudah ditangani
+                         </label>
+                     </div>
+                                <button type="submit" class="bg-black fg-white medium" id="kirimButton"> Ubah Status</button>
+                                <span class="fg-white" style="padding-left: 20px; padding-right:20px">||</span>
+                                <a href="javascript:hapusPengaduan(<?php echo $row['id'];?>);" class="fg-white" ><span class="icon-remove fg-white"></span></a>
+                        </form>
 			</div><br>
 			<?php
 				}
