@@ -1,6 +1,6 @@
 <?php
 	require_once("config.php");
-	//require_once 'swiftmailer-master/lib/swift_required.php';
+	require_once("lib\swift_required.php");
 
 	function verifikasiPassword( $real){
 		$password = "kamilRidwanWalkot";
@@ -40,7 +40,7 @@
 		$imgSrc = "images/$i-{$_FILES['imgSrc'] ['name']}";
 		return $imgSrc;
 	}
-	
+	/*
 	function kirimEmail( $nama_pelapor, $msg){
 		$subject="[PREMAN] Aduan dari ".$nama_pelapor;
 		$to = "muzavan@gmail.com";
@@ -50,6 +50,7 @@
 		
 		mail($to,$subject,$msg,$headers);
 	}
+	*/
 	
 	function cekIsLogin(){
 
@@ -91,6 +92,44 @@
 
 	function logout(){
 		setcookie('preman-login', null, -1);
+	}
+
+		function kirimEmail($nama_pelapor,$msg){
+		$transport = Swift_SmtpTransport::newInstance('ssl://smtp.gmail.com', 465)
+		  ->setUsername('mendingngoding@gmail.com')
+		  ->setPassword('mendingngodingaja')
+		  ;
+
+		/*
+		You could alternatively use a different transport such as Sendmail or Mail:
+
+		// Sendmail
+		$transport = Swift_SendmailTransport::newInstance('/usr/sbin/sendmail -bs');
+
+		// Mail
+		$transport = Swift_MailTransport::newInstance();
+		*/
+
+		// Create the Mailer using your created Transport
+		$mailer = Swift_Mailer::newInstance($transport);
+
+		$message = Swift_Message::newInstance()
+
+	  // Give the message a subject
+	  ->setSubject('[PREMAN] Laporan Terbaru dari '.$nama_pelapor)
+
+	  // Set the From address with an associative array
+	  ->setFrom(array('preman-diskamtam@bandungjuara.com' => 'Sistem Pengaduan Ruang Taman'))
+
+	  // Set the To addresses with an associative array
+	  ->setTo(array('muzavan@gmail.com', '13512042@std.stei.itb.ac.id' => 'Muhammad Reza Irvanda'))
+
+	  // Give it a body
+	  ->setBody($msg)
+	  ;
+
+ 	$result = $mailer->send($message);
+ 	return $result;
 	}
 
 
