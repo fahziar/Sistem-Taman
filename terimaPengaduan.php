@@ -8,7 +8,7 @@
 	$link_foto = uploadPengaduan();
 	if(terimaPengaduan($judul,$nama,$telp,$tid,$isi,$link_foto)){
 		kirimEmail($nama,$isi);
-		header('Location:listPengaduanAdmin.php');
+		header('Location:listPengaduanPublik.php');
 		die();
 	}
 	else{
