@@ -60,7 +60,7 @@
 	</div>
 	
  <div class="">
-  <div style="background: url(images/bg.jpg); background-size: cover; height:1000px">
+  <div style="background: #b8b9ba; background-size: cover;">
        <div class="container" style="padding: 20px 10px">	
 	  <div class="row">
 		<div class="panel-content fg-dark nlp nrp">

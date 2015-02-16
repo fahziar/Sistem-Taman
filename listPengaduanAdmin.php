@@ -155,21 +155,21 @@
 					<input type="hidden" name="id" value="<?php echo $row['id'];?>"/>
                      <div class="input-control radio default-style margin10 fg-white" data-role="input-control">
                          <label>
-                         <input type="radio" name="status" value="Belum ditangani" checked />
+                         <input type="radio" name="status" value="Belum ditangani" <?php if($row['status']=="Belum ditangani") echo "checked";?>/>
                          <span class="check"></span>
                                                  Belum ditangani
                          </label>
                      </div>
                      <div class="input-control radio default-style margin10 fg-white" data-role="input-control">
                          <label>
-                         <input type="radio" name="status" value="Sedang diproses"/>
+                         <input type="radio" name="status" value="Sedang diproses" <?php if($row['status']=="Sedang diproses") echo "checked";?>/>
                          <span class="check"></span>
                                                   Sedang diproses
                          </label>
                      </div>
                                          <div class="input-control radio default-style margin10 fg-white" data-role="input-control">
                          <label>
-                         <input type="radio" name="status" value="Sudah ditangani"/>
+                         <input type="radio" name="status" value="Sudah ditangani" <?php if($row['status']=="Sudah ditangani") echo "checked";?>/>
                          <span class="check"></span>
                                                  Sudah ditangani
                          </label>
