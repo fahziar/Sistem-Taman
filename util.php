@@ -94,7 +94,13 @@
 		setcookie('preman-login', null, -1);
 	}
 
-		function kirimEmail($nama_pelapor,$msg){
+	function updateDatabaseTaman($id,$nama){
+		connectDatabase();
+		$query = "UPDATE `taman` SET `nama`='$nama' WHERE `id`=$id;";
+		return mysql_query($query);
+	}
+
+	function kirimEmail($nama_pelapor,$msg){
 		$transport = Swift_SmtpTransport::newInstance('ssl://smtp.gmail.com', 465)
 		  ->setUsername('mendingngoding@gmail.com')
 		  ->setPassword('mendingngodingaja')

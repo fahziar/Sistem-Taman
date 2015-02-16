@@ -16,7 +16,7 @@
 		die();
 	}
 	else{
-		echo "Something's wrong";
+		echo "Saat ini sistem belum dapat menerima pengaduan";
 	}
 
 ?>
