@@ -118,6 +118,12 @@
 					<input name="password" type="password" placeholder="Password"/>
 				</div>
 				<br><br><br>
+				<?php 
+					if(isset($_GET['error'])){?>
+						<p style='color:#ee0000;margin-top:-20px;'>Password yang anda masukkan salah</p>
+				<?php
+					}
+				?>
 				<button name="submit" type="submit" class="bg-darkBlue fg-white large" id="loginButton">Login</button>
 			  </form>
 				<br><br>
