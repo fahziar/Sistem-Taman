@@ -46,18 +46,18 @@
   <div class="container" style="padding: 25px 10px">	
 	  <div class="row">
 		  <div class="offset5">
-			<form method="#" action="#">
+			<form method="#" action="#" onSubmit="return Validation()">
 				<label><b>Judul</b></label>
 				<div class="span6 input-control text info-state">
-					<input type="text" placeholder="judul"/>
+					<input type="text" placeholder="judul" id="Judul"/>
 				</div>
 				<label><b>Nama Pengadu</b></label>
 				<div class="span6 input-control text info-state">
-					<input type="text" placeholder="nama pengadu"/>
+					<input type="text" placeholder="nama pengadu" id="Pengadu"/>
 				</div>
 				<label><b>Nomor Telepon</b></label>
 				<div class="span6 input-control text info-state">
-					<input type="text" placeholder="nomor telepon"/>
+					<input type="text" placeholder="nomor telepon" id="Telepon"/>
 				</div>
 				<label><b>Taman</b></label>
 				<div class="span6 input-control select info-state">
@@ -68,15 +68,16 @@
 					</select>
 				</div>
 				<label><b>Upload Foto</b></label>
-				<input type="file"/>
+				<input type="file" id="Foto"/>
 			    <br><br>
 				<label><b>Isi Pengaduan</b></label>
 				<div class="span6 input-control textarea info-state">
-					<textarea placeholder="isi pengaduan"></textarea>
+					<textarea placeholder="isi pengaduan" id="Pengaduan"></textarea>
 				</div>
 				
 				<br>
 				<button type="submit" class="bg-darkBlue fg-white large" id="kirimButton">Kirim</button>
+				<script src="js/validasi.js"/>
 			</form>
 		  </div>
 	  </div>
