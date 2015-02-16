@@ -1,4 +1,6 @@
 <?php
+	require_once("config.php");
+
 	function verifikasiPassword( $real){
 		$password = "kamilRidwanWalkot";
 		if($password===$real){
@@ -53,8 +55,9 @@
 	}
 
 	function connectDatabase(){
-		mysql_connect('localhost','root','');
-		mysql_select_db('Sistem-Pengaduan');
+		global $db_host, $db_username, $db_password, $db_name;
+		mysql_connect($db_host, $db_username, $db_password);
+		mysql_select_db($db_name);
 	}
 
 	function tambahDatabaseTaman( $nama_taman){
