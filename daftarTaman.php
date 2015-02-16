@@ -25,6 +25,32 @@
     <!-- Local JavaScript -->
     <script src="js/docs.js"></script>
     <script src="js/github.info.js"></script>
+    <script type="text/javascript">
+
+        function refresh()
+        {
+            location.reload();
+        }
+
+        function hapusTaman(id)
+        {
+            if(confirm("Anda yakin akan menghapus taman ini?")){
+                var xmlHtppObj = new XMLHttpRequest();
+                xmlHtppObj.open("POST", "hapusTaman.php", true);
+                xmlHtppObj.onreadystatechange = function()
+                {
+                    if ((xmlHtppObj.status == 200) && (xmlHtppObj.readyState == 4))
+                    {
+                        location.reload();
+                    }
+                
+                }
+
+                xmlHtppObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xmlHtppObj.send("id=" + id);
+            }
+        }
+        </script>
 
     <title>Daftar Taman</title>
 </head>
@@ -33,10 +59,10 @@
     <div class="navigation-bar dark">
     <div class="navigation-bar-content container">
         <a href="homeUser.html" class="element"><span class="icon-home"></span><b> Home</b></a>
-		<a href="listPengaduanPublik.html" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
-		<a href="#" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
+		<a href="listPengaduanPublik.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
+		<a href="buatLaporan.php" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
 		<a href="daftarTaman.php" class="element"><span class="icon-list"></span><b> Daftar Taman</b></a>
-		<a href="#" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
+		<a href="logout.php" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
     </div>
 	</div>
 <div class="">
@@ -48,7 +74,18 @@
 	</div>
   <div class="container" style="padding: 30px 10px">	
 	  <div class="row">
+        <a href="addTaman.php" class="fg-blue offset10 "><span class="icon-plus" style='font-face:Arial;'></span><span style='font-family:Arial;color:#333333;'>Tambah Taman</span></a>
+                                
 		  <div class="offset4">
+          <?php
+                require_once("util.php");
+                $result = bacaDatabaseTaman();
+                if(is_null($result)){
+                    echo "Belum ada taman yang terdaftar";
+                }
+                else{
+
+          ?>
                     <table class="table striped responsive">
                         <thead>
                         <tr class="bg-darkBlue fg-white">
@@ -59,31 +96,29 @@
                         </thead>
 
                         <tbody>
+                        <?php
+                            $i=0;
+                            while($row = mysql_fetch_array($result)){
+                                $i++;
+                        ?>
                         <tr>
-							<td class="text-center">1</td>
-							<td class="text-center">Taman Jomblo</td>
+							<td class="text-center"><?php echo $i;?></td>
+							<td class="text-center"><?php echo $row['nama'];?></td>
 							<td class="text-center">
-								<a href="addTaman.html" class="fg-blue"><span class="icon-plus"></span>   |   </a>
-								<a href="" class="fg-blue"><span class="icon-remove"></span>   |   </a>
-								<a href="editTaman.html" class="fg-blue"><span class="icon-pencil"></span></a>
-								
+								<a href="javascript:hapusTaman(<?php echo $row['id'];?>);" class="fg-blue"><span class="icon-remove"></span>   |   </a>
+								<a href="editTaman.php?id=<?php echo $row['id'];?>" class="fg-blue"><span class="icon-pencil"></span></a>
 							</td>
 						</tr>
-						  <tr>
-							<td class="text-center">2</td>
-							<td class="text-center">Taman Jomblo</td>
-							<td class="text-center">
-								<a href="addTaman.html" class="fg-blue"><span class="icon-plus"></span>   |   </a>
-								<a href="" class="fg-blue"><span class="icon-remove"></span>   |   </a>
-								<a href="editTaman.html" class="fg-blue"><span class="icon-pencil"></span></a>
-								
-							</td>
-						</tr>
-                  
+                        <?php
+                            }
+                        ?>
                         </tbody>
-
                         <tfoot></tfoot>
                     </table>
+
+                    <?php
+                        }
+                    ?>
                 </div>
 		  </div>
 	  </div>

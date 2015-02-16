@@ -63,6 +63,7 @@
 	function tambahDatabaseTaman( $nama_taman){
 		connectDatabase();
 		$query = "INSERT INTO `taman`(`nama`) VALUES('$nama_taman');";
+		echo $query;
 		$result = mysql_query($query);		
 		return $result;
 	}
@@ -77,6 +78,14 @@
 	function bacaDatabaseTaman(){
 		connectDatabase();
 		$query = "SELECT * FROM `taman`";
+		$result = mysql_query($query);		
+		return $result;
+	}
+
+	function updateDatabaseTaman($id,$nama_baru){
+		connectDatabase();
+		$query = "UPDATE `taman` SET `nama` = '$nama_baru' WHERE `id`=$id";
+		echo $query;
 		$result = mysql_query($query);		
 		return $result;
 	}
