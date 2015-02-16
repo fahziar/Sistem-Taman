@@ -58,10 +58,20 @@
 <body class="metro">	
     <div class="navigation-bar dark">
     <div class="navigation-bar-content container">
-        <a href="homeUser.html" class="element"><span class="icon-home"></span><b> Home</b></a>
-		<a href="listPengaduanPublik.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
+        <a href="homeAdmin.php" class="element"><span class="icon-home"></span><b> Home</b></a>
+		<a href="listPengaduanAdmin.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
 		<a href="buatLaporan.php" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
 		<a href="daftarTaman.php" class="element"><span class="icon-list"></span><b> Daftar Taman</b></a>
+		<div class="element" style="padding:15px 10px">
+					<form action='listPengaduanAdmin.php' method='get'>
+						<div class="input-control text size4">
+							<input type="text" name="search" placeholder="Search">
+
+
+							<button class="btn-search"></button>
+						</div>
+					</form>
+		</div>
 		<a href="logout.php" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
     </div>
 	</div>
@@ -72,9 +82,9 @@
 		</h1>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>
-  <div class="container" style="padding: 30px 10px">	
+  <div class="container" style="padding: 20px 10px">	
 	  <div class="row">
-        <a href="addTaman.php" class="fg-blue offset10 "><span class="icon-plus" style='font-face:Arial;'></span><span style='font-family:Arial;color:#333333;'>Tambah Taman</span></a>
+        <a href="addTaman.php" class="fg-blue place-right" style='font-size:18pt; '><span class="icon-plus" ></span>  Tambah Taman</a><br><br><br>
                                 
 		  <div class="offset4">
           <?php
@@ -86,7 +96,7 @@
                 else{
 
           ?>
-                    <table class="table striped responsive">
+                    <table class="table striped responsive bordered">
                         <thead>
                         <tr class="bg-darkBlue fg-white">
                             <th class="text-center">No</th>

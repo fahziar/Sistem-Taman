@@ -32,11 +32,21 @@
 <body class="metro">	
     <div class="navigation-bar dark">
     <div class="navigation-bar-content container">
-        <a href="homeUser.html" class="element"><span class="icon-home"></span><b> Home</b></a>
-		<a href="listPengaduanPublik.html" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
-		<a href="#" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
-		<a href="daftarTaman.html" class="element"><span class="icon-list"></span><b> Daftar Taman</b></a>
-		<a href="#" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
+        <a href="homeAdmin.php" class="element"><span class="icon-home"></span><b> Home</b></a>
+		<a href="listPengaduanAdmin.php" class="element"><span class="icon-list"></span><b> Daftar Pengaduan</b></a>
+		<a href="buatLaporan.php" class="element"><span class="icon-file-pdf"></span><b> Laporan</b></a>
+		<a href="daftarTaman.php" class="element"><span class="icon-list"></span><b> Daftar Taman</b></a>
+		<div class="element" style="padding:15px 10px">
+					<form action='listPengaduanAdmin.php' method='get'>
+						<div class="input-control text size4">
+							<input type="text" name="search" placeholder="Search">
+
+
+							<button class="btn-search"></button>
+						</div>
+					</form>
+		</div>
+		<a href="logout.php" class="element place-right"><span class="icon-exit"></span><b> Logout</b></a>
     </div>
 	</div>
 <div class="">
@@ -49,10 +59,10 @@
   <div class="container" style="padding: 30px 10px">	
 	  <div class="row">
 		  <div class="offset5">
-			<form method="post" action="tambahTaman.php">
+			<form method="#" action="#">
 				<label><b>Nama Taman</b></label>
 				<div class="span6 input-control text info-state">
-					<input type="text" name="nama" placeholder="nama taman"/>
+					<input type="text" placeholder="nama taman"/>
 				</div>
 				<br>
 				<br>
