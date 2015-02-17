@@ -77,8 +77,13 @@
 			<?php
                 }
                 if($result->num_rows == 0){
-                    $key = $_GET['search'];
-                    echo "<p> Pencarian untuk '$key' tidak ditemukan</p>";
+					if ( isset($_GET['search']) ){
+						$key = $_GET['search'];
+						echo "<p> Pencarian untuk '$key' tidak ditemukan</p>";
+					}
+					else{
+						echo "<h3>Tidak ada yang dapat ditampilkan</h3>";
+					}
                 }
             ?>
 	    </div>
