@@ -1,3 +1,13 @@
+<?php
+    require_once("util.php");
+
+    if (!CekIsLogin())
+    {
+        header("Location:homeAdmin.php");
+        die();
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

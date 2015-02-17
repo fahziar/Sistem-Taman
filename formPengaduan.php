@@ -81,7 +81,7 @@
 					</select>
 				</div>
 				<label><b>Upload Foto</b></label>
-				<input type="file" id="Foto" name='imgSrc'/>
+				<input type="file" id="Foto" name='imgSrc' required/>
 			    <br><br>
 				<label><b>Isi Pengaduan</b></label>
 				<div class="span6 input-control textarea info-state">

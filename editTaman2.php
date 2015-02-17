@@ -1,4 +1,13 @@
 <?php
+	<?php
+	require_once("util.php");
+
+	if (!CekIsLogin())
+	{
+		header("Location:homeAdmin.php");
+		die()
+	}
+	
 	require_once("util.php");
 	if(!isset($_POST['nama'])){
 		header('Location:daftarTaman.php');
